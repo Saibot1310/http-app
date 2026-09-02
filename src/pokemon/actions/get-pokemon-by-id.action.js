@@ -1,21 +1,20 @@
 /**
  * Fetch Pokemon information from PokeAPI
- * @param {Number} id 
- * @returns { Object } Pokemon information
+ * @param {Number} id
+ * @returns { Promise<Object> } Pokemon information
  */
-export const getPokemonById = (id) => {
+export const getPokemonById = async (id) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.warn(error);
-    })
+  const data = await response.json();
 
-  return {}
+  const pokemonData = {
+    id: data.id,
+    name: data.name,
+    image: data.sprites.front_default
+  }
 
-}
+  console.log(pokemonData);
+
+  return pokemonData;
+};
