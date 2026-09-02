@@ -11,9 +11,6 @@ export const PokemonApp = (element) => {
 
   titleElement && (titleElement.innerHTML = 'Pokemon App');
 
-  console.log('Hola mundo');
-  console.log(element);
-
   getPokemonById(1);
 
 }
